@@ -1,0 +1,50 @@
+<div class="container">
+   <div class="row">
+     <div class="col-md-12 bg-secondary-theme p-5 shadow-effect">
+       <h3 class="text-center text-theme-primary">
+         Queries
+       </h3>
+       <p class="text-center mb-5">You can manage your queries.</p>
+       </div>
+   </div>
+   <div class="row mt-5 mb-5">
+     <div class="col-md-12">
+       <div class="card shadow-effect">
+         <div class="card-body">
+           <table class="table row-border hover">
+             <thead>
+               <tr>
+                 <th>No</th>
+                 <th>Name</th>
+                 <th>Email</th>
+                 <th>Comments</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr *ngFor="let query of queries; let i = index">
+                 <td>{{ i + 1 }}</td>
+                 <td> {{query.data.name }}</td>
+                 <td>{{ query.data.email }}</td>
+                 <td>{{ query.data.message }}</td>
+                 <td>
+                   <button
+                     class="btn btn-sm btn-danger ml-2"
+                     (click)="onDelete(query.id)"
+                   >
+                     Delete
+                   </button>
+                 </td>
+               </tr>
+             </tbody>
+           </table>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div class="col-md-12 text-center mb-5 mt-5">
+     <button class="btn btn-warning ml-3" routerLink="/dashboard">
+       Back to Dashboard
+     </button>
+   </div>
+ </div>
+ 

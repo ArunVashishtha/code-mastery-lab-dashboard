@@ -3,7 +3,8 @@ export interface Post {
    permalink: string;
    category: {
       categoryId: string,
-      category: string
+      category: string,
+      categoryDescription?: string
    },
    postImgPath: string;
    excerpt: string;

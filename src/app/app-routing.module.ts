@@ -7,11 +7,13 @@ import { AllPostComponent } from './posts/all-post/all-post.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { SubscriberComponent } from './subscriber/subscriber.component';
+import { QueriesComponent } from './queries/queries.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'subscribers', component: SubscriberComponent, canActivate:[AuthGuard] },
-  { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
+  { path: 'contact', component: QueriesComponent, canActivate:[AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'categories', component: CategoriesComponent, canActivate:[AuthGuard] },
   { path: 'posts', component: AllPostComponent, canActivate:[AuthGuard] },
   { path: 'posts/new', component: NewPostComponent, canActivate:[AuthGuard] },

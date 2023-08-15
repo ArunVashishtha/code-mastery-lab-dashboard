@@ -10,6 +10,7 @@ import { Category } from '../models/category';
 export class CategoriesComponent implements OnInit {
   categoryArray: any = [];
   formCategory: string = '';
+  formCategoryDescription: string = '';
   formStatus: string = 'Add';
   formCategoryID: string = '';
   constructor(private categoryService: CategoriesService) { }
@@ -22,7 +23,8 @@ export class CategoriesComponent implements OnInit {
 
   onSubmit = (formData: any): void => {
     let categoryData: Category = {
-      category: formData.value.category
+      category: formData.value.category,
+      categoryDescription: formData.value.description
     };
     if (this.formStatus === 'Add') {
       this.categoryService.saveData(categoryData);
@@ -37,6 +39,7 @@ export class CategoriesComponent implements OnInit {
     this.formStatus = 'Edit';
     this.formCategoryID = category.id;
     this.formCategory = category.data.category;
+    this.formCategoryDescription = category.data.categoryDescription;
   }
 
   onDelete(category: any) {

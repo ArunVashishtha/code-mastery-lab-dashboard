@@ -10,7 +10,7 @@
         #categoryForm="ngForm"
         (ngSubmit)="onSubmit(categoryForm)"
       >
-        <div class="col-md-10">
+        <div class="col-md-5">
           <input
             type="text"
             class="form-control shadow-effect"
@@ -30,6 +30,26 @@
             Category field is required.
           </div>
         </div>
+        <div class="col-md-5">
+          <input
+            type="text"
+            class="form-control shadow-effect"
+            placeholder="Add category description"
+            name="description"
+            #newDescription="ngModel"
+            [(ngModel)]="formCategoryDescription"
+            required
+            [ngClass]="{
+              'is-invalid': newDescription.touched && newDescription.invalid
+            }"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="newDescription.touched && newDescription.invalid"
+          >
+            Description field is required.
+          </div>
+        </div>
         <div class="col-md-2">
           <button
             class="btn btn-block btn-info mb-12 btn-theme"
@@ -42,8 +62,7 @@
     </div>
   </div>
   <div class="row mt-5 mb-5">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="card shadow-effect">
         <div class="card-body">
           <table class="table row-border hover">
@@ -51,13 +70,15 @@
               <tr>
                 <th>No</th>
                 <th>Category</th>
-                <th>Action</th>
+                <th>Description</th>
+                <th [width]="200">Action</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let category of categoryArray; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{ category.data.category }}</td>
+                <td>{{ category.data.categoryDescription }}</td>
                 <td>
                   <button
                     class="btn btn-sm btn-warning"
@@ -78,7 +99,6 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3"></div>
   </div>
   <div class="col-md-12 text-center mb-5 mt-5">
     <button class="btn btn-warning ml-3" routerLink="/dashboard">
