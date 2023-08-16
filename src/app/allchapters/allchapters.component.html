@@ -1,0 +1,58 @@
+<div class="container">
+   <div class="row">
+      <div class="col-md-12">
+         <div class="card shadow-effect bg-secondary-theme">
+            <div class="card-body text-center">
+               <h3 class="text-theme-center">All Blog Posts</h3>
+               <p>From here you can manage your bolg posts.</p>
+               <button class="btn btn-info bg-theme" routerLink="/chapters/new"> Add New Post</button>
+               <button class="btn btn-warning ml-2" routerLink="/"> Back to Dashboard</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="col-md-12">
+         <div class="card shadow-effect">
+            <div class="card-body">
+               <table class="table row-border hover">
+                  <thead>
+                     <tr>
+                        <th> No </th>
+                        <th> Title </th>
+                        <th> Category </th>
+                        <th> Description </th>
+                        <th> Date </th>
+                        <th> Actions </th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngFor="let chapter of chapters; let i=index">
+                        <td width="10"> {{i+1}}</td>
+                        <td width="100">{{chapter.data.title}}</td>
+                        <td>{{chapter.data.category.category}}</td>
+                        <td width="100">{{chapter.data.description}}</td>
+                        <td>{{chapter.data.createdAt.toMillis() | date }}</td>
+                        <td width="200">
+                           <button class="btn btn-sm btn-warning" routerLink="/chapters/new" [queryParams]="{id: chapter.id}">
+                              Edit
+                           </button>
+                           <button class="btn btn-sm btn-danger" (click)="onDelete(chapter.id)">
+                              Delete
+                           </button>
+                           <!-- <button *ngIf="!post.data.isFeatured" class="btn btn-sm btn-success" (click)="postEnable(post.id, true)">
+                              Mark Feature
+                           </button> -->
+                           <!-- <button *ngIf="post.data.isFeatured" class="btn btn-sm btn-info" (click)="postEnable(post.id, false)">
+                              Delete Feature
+                           </button> -->
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

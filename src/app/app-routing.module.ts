@@ -8,10 +8,14 @@ import { LoginComponent } from './auth/login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { SubscriberComponent } from './subscriber/subscriber.component';
 import { QueriesComponent } from './queries/queries.component';
+import { AllchaptersComponent as AllChaptersComponent } from './allchapters/allchapters.component';
+import { NewChapterComponent } from './new-chapter/new-chapter.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'subscribers', component: SubscriberComponent, canActivate:[AuthGuard] },
+  { path: 'chapters', component: AllChaptersComponent, canActivate:[AuthGuard] },
+  { path: 'chapters/new', component: NewChapterComponent, canActivate:[AuthGuard] },
+  { path: 'subscribers', component: SubscriberComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: QueriesComponent, canActivate:[AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'categories', component: CategoriesComponent, canActivate:[AuthGuard] },

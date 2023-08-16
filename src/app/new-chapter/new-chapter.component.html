@@ -1,0 +1,20 @@
+<div>
+   <h2>Add New Chapter</h2>
+   <form [formGroup]="chapterForm" (ngSubmit)="onSubmit()">
+      <label for="">Please select a post category</label>
+      <select class="form-control" formControlName="category">
+         <option value="">Please select a category</option>
+         <option *ngFor="let category of categories" value="{{ category.id }}-{{ category.data.category }}">
+            {{ category.data.category }}
+         </option>
+      </select>
+      <br>
+      <label for="title">Chapter Title:</label>
+      <input type="text" id="title" formControlName="title">
+      <br>
+      <label for="content">Chapter Content:</label>
+      <quill-editor id="content" formControlName="content" [modules]="quillConfig"></quill-editor>
+      <br>
+      <button type="submit" [disabled]="!chapterForm.valid">Save Chapter</button>
+   </form>
+</div>

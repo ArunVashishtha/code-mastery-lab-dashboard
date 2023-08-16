@@ -21,6 +21,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { SubscriberComponent } from './subscriber/subscriber.component';
 import { QueriesComponent } from './queries/queries.component';
+import { AllchaptersComponent } from './allchapters/allchapters.component';
+import { NewChapterComponent } from './new-chapter/new-chapter.component';
+import { QuillModule } from 'ngx-quill';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +35,9 @@ import { QueriesComponent } from './queries/queries.component';
     AllPostComponent,
     LoginComponent,
     SubscriberComponent,
-    QueriesComponent
+    QueriesComponent,
+    AllchaptersComponent,
+    NewChapterComponent
   ],
   imports: [
     FormsModule,
@@ -46,7 +51,8 @@ import { QueriesComponent } from './queries/queries.component';
     HttpClientModule,
     ReactiveFormsModule,
     AngularEditorModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    QuillModule.forRoot()
   ],
   providers: [
   ],
