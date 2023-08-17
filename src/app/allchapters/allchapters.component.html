@@ -31,8 +31,9 @@
                      <tr *ngFor="let chapter of chapters; let i=index">
                         <td width="10"> {{i+1}}</td>
                         <td width="100">{{chapter.data.title}}</td>
-                        <td>{{chapter.data.category.category}}</td>
-                        <td width="100">{{chapter.data.description}}</td>
+                        <td>{{chapter.data.category.description}}</td>
+                        <td width="100">
+                          <span [innerHTML]="chapter.data.content"></span></td>
                         <td>{{chapter.data.createdAt.toMillis() | date }}</td>
                         <td width="200">
                            <button class="btn btn-sm btn-warning" routerLink="/chapters/new" [queryParams]="{id: chapter.id}">
