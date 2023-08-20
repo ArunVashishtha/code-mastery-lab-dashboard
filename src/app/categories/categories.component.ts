@@ -13,10 +13,11 @@ export class CategoriesComponent implements OnInit {
   formCategoryDescription: string = '';
   formStatus: string = 'Add';
   formCategoryID: string = '';
+  formContentType: string = '';
   constructor(private categoryService: CategoriesService) { }
 
   ngOnInit(): void {
-    this.categoryService.loadData().subscribe((val) => {
+    this.categoryService.loadData().subscribe((val: any) => {
       this.categoryArray = val;
     })
   }
@@ -24,7 +25,9 @@ export class CategoriesComponent implements OnInit {
   onSubmit = (formData: any): void => {
     let categoryData: Category = {
       category: formData.value.category,
-      categoryDescription: formData.value.description
+      categoryDescription: formData.value.description,
+      contentType: formData.value.contentType,
+      isFeatured: false
     };
     if (this.formStatus === 'Add') {
       this.categoryService.saveData(categoryData);
@@ -39,10 +42,21 @@ export class CategoriesComponent implements OnInit {
     this.formStatus = 'Edit';
     this.formCategoryID = category.id;
     this.formCategory = category.data.category;
+    this.formContentType = category.data.contentType;
     this.formCategoryDescription = category.data.categoryDescription;
   }
 
   onDelete(category: any) {
     this.categoryService.deleteData(category.id);
+  }
+
+  enableDisableCategory(enableCat: boolean, selectedCat: any) {
+    let categoryData: Category = {
+      category: selectedCat.data.category,
+      categoryDescription: selectedCat.data.categoryDescription,
+      contentType: selectedCat.data.contentType,
+      isFeatured: enableCat
+    };
+    this.categoryService.updateData(selectedCat.id, categoryData);
   }
 }

@@ -89,6 +89,7 @@ export class NewPostComponent implements OnInit {
         isFeatured: false,
         views: 0,
         status: 'new',
+        isEnablePost: false,
         createdAt: new Date()
       }
     this.postService.uploadImage(this.selectedImage, postData, this.formStatus, this.postId);

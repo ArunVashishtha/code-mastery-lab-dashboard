@@ -40,14 +40,21 @@
                            <button class="btn btn-sm btn-warning" routerLink="/posts/new" [queryParams]="{id: post.id}">
                               Edit
                            </button>
-                           <button class="btn btn-sm btn-danger" (click)="onDelete(post.data.postImgPath, post.id)">
+                           <button class="btn btn-sm btn-danger ml-2" (click)="onDelete(post.data.postImgPath, post.id)">
                               Delete
                            </button>
-                           <button *ngIf="!post.data.isFeatured" class="btn btn-sm btn-success" (click)="postEnable(post.id, true)">
+                           <button *ngIf="!post.data.isFeatured" class="btn btn-sm btn-success mt-2" (click)="postFeatureEnable(post.id, true)">
                               Mark Feature
                            </button>
-                           <button *ngIf="post.data.isFeatured" class="btn btn-sm btn-info" (click)="postEnable(post.id, false)">
+                           <button *ngIf="post.data.isFeatured" class="btn btn-sm btn-info mt-2" (click)="postFeatureEnable(post.id, false)">
                               Delete Feature
+                           </button>
+                           
+                           <button *ngIf="!post.data.isEnablePost" class="btn btn-sm btn-success mt-2" (click)="postEnable(post.id, true)">
+                              Mark Post Enable
+                           </button>
+                           <button *ngIf="post.data.isEnablePost" class="btn btn-sm btn-info mt-2" (click)="postEnable(post.id, false)">
+                              Delete Post
                            </button>
                         </td>
                      </tr>

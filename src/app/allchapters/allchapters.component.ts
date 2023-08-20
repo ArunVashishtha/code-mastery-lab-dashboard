@@ -12,7 +12,7 @@ export class AllchaptersComponent implements OnInit {
   constructor(private chapterService: ChaptersService) { }
 
   ngOnInit(): void {
-    this.chapterService.loadData().subscribe((val) => {
+    this.chapterService.loadData().subscribe((val: any) => {
       console.log(val);
       this.chapters = val;
     })
@@ -20,6 +20,13 @@ export class AllchaptersComponent implements OnInit {
 
   onDelete(id: string) {
     this.chapterService.deleteData(id);
+  }
+
+  chapterEnable(id:string, markFeatureEnable: boolean) {
+    const featuredData = {
+      isFeatured: markFeatureEnable
+    }
+    this.chapterService.updateChapterFeatureEnable(id, featuredData);
   }
 
 }

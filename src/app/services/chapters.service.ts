@@ -17,7 +17,7 @@ export class ChaptersService {
         .then(() => {
           this.toaster.success('Chapter added successfully!');
         })
-        .catch(error => {
+        .catch((error: any) => {
           console.error('Error adding chapter: ', error);
         });
     }
@@ -31,7 +31,7 @@ export class ChaptersService {
   
     loadData() {
       return this.afs.collection('chapters').snapshotChanges().pipe(map(actions => {
-        return actions.map(a => {
+        return actions.map((a: { payload: { doc: { data: () => any; id: any; }; }; }) => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { id, data };
@@ -46,6 +46,12 @@ export class ChaptersService {
     deleteData(id: string) {
       this.afs.doc(`chapters/${id}`).delete().then(() => {
         this.toaster.info("Deleted successfully");
+      });
+    }
+  
+    updateChapterFeatureEnable(id:string, featureData:any) {
+      this.afs.doc(`chapters/${id}`).update(featureData).then(() => {
+        this.toaster.success('Feature updated successfully');
       });
     }
 }

@@ -28,7 +28,7 @@ export class PostsService {
   }
 
   saveData(postData:any) {
-    this.afs.collection('posts').add(postData).then(docRef => {
+    this.afs.collection('posts').add(postData).then((docRef: any) => {
       this.toaster.success('Data Insert Successfully.')
       this.router.navigate(['/posts']);
     })

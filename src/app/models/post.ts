@@ -10,6 +10,7 @@ export interface Post {
    excerpt: string;
    content: string;
    isFeatured: boolean;
+   isEnablePost: boolean;
    views: number;
    status: string,
    createdAt: Date

@@ -9,7 +9,6 @@ import { environment } from '../environments/environment.prod';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { NewPostComponent } from './posts/new-post/new-post.component';
 import { AllPostComponent } from './posts/all-post/all-post.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,7 +22,9 @@ import { SubscriberComponent } from './subscriber/subscriber.component';
 import { QueriesComponent } from './queries/queries.component';
 import { AllchaptersComponent } from './allchapters/allchapters.component';
 import { NewChapterComponent } from './new-chapter/new-chapter.component';
-import { QuillModule } from 'ngx-quill';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,19 +41,20 @@ import { QuillModule } from 'ngx-quill';
     NewChapterComponent
   ],
   imports: [
-    FormsModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireStorageModule,
-    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
     AngularEditorModule,
     AngularFireAuthModule,
-    QuillModule.forRoot()
+    ToastrModule.forRoot(),
+    CKEditorModule,
+    CommonModule
   ],
   providers: [
   ],

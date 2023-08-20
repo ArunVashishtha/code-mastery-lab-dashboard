@@ -1,5 +1,6 @@
 export interface Chapter {
    title: string;
+   chapterNumber: number;
    category: {
       id: string,
       description?: string

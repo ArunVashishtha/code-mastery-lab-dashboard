@@ -21,9 +21,15 @@ export class AllPostComponent implements OnInit {
     this.postService.deleteImage(postImgPath, id);
   }
 
-  postEnable(id:string, markFeatureEnable: boolean) {
+  postFeatureEnable(id:string, markFeatureEnable: boolean) {
     const featuredData = {
       isFeatured: markFeatureEnable
+    }
+    this.postService.updatePostFeatureEnable(id, featuredData);
+  }
+  postEnable(id:string, markPostEnable: boolean) {
+    const featuredData = {
+      isEnablePost: markPostEnable
     }
     this.postService.updatePostFeatureEnable(id, featuredData);
   }
