@@ -29,7 +29,12 @@
               "output": "./assets/fonts/"
             },
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "./node_modules/@ckeditor",
+                "output": "/assets/ckeditor"
+              }
             ],
             "styles": [
               "src/styles.css"

@@ -1,0 +1,26 @@
+/* Styling for the code block */
+.code-block {
+   position: relative;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   padding: 10px;
+   background-color: #f8f8f8;
+   margin-bottom: 20px;
+ }
+ 
+ /* Styling for the copy button */
+ .copy-button {
+   position: absolute;
+   top: 5px;
+   right: 5px;
+   background-color: #f0f0f0;
+   border: none;
+   padding: 5px 10px;
+   cursor: pointer;
+ }
+ 
+ /* Highlight button on hover */
+ .copy-button:hover {
+   background-color: #ddd;
+ }
+ 

@@ -4,7 +4,7 @@ import { CategoriesService } from '../services/categories.service';
 import { ChaptersService } from '../services/chapters.service';
 import { Chapter } from '../models/chapter';
 import { ActivatedRoute } from '@angular/router';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Editor from '../../../ckeditor5-39.0.1-72owmrkdy25w/build/ckeditor';
 @Component({
   selector: 'app-new-chapter',
   templateUrl: './new-chapter.component.html',
@@ -13,52 +13,11 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export class NewChapterComponent implements OnInit {
   categories: any;
   chapterForm!: FormGroup;
-  Editor: any = ClassicEditor; // CKEditor instance
+  Editor: any = Editor; // CKEditor instance
   editorContent = '';
   chapterId = '';
   chapter: any;
   formStatus: string = 'Add';
-  public config = {
-    toolbar: [
-      'heading',
-      '|',
-      'fontfamily',
-      'fontsize',
-      'alignment',
-      'fontColor',
-      'fontBackgroundColor',
-      '|',
-      'bold',
-      'italic',
-      'custombutton',
-      'strikethrough',
-      'underline',
-      'subscript',
-      'superscript',
-      '|',
-      'link',
-      '|',
-      'outdent',
-      'indent',
-      '|',
-      'bulletedList',
-      'numberedList',
-      '|',
-      'code',
-      'codeBlock',
-      '|',
-      'insertTable',
-      '|',
-      'imageUpload',
-      'blockQuote',
-      '|',
-      'undo',
-      'redo',
-      '|',
-      'youtube',
-      'mediaEmbed',
-    ],
-  };
   constructor(
     private fb: FormBuilder,
     private chapterService: ChaptersService,
