@@ -1,6 +1,7 @@
 export interface Post {
    title: string;
    permalink: string;
+   postLabel: string;
    category: {
       categoryId: string,
       category: string,

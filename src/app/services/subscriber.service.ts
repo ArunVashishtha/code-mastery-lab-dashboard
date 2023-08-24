@@ -2,26 +2,21 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
+import { FirestoreService } from './firestore.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubscriberService {
-
-  constructor(private afs: AngularFirestore, private toastr: ToastrService) { }
+  collection = 'subscribers';
+  constructor(private afs: FirestoreService, private toastr: ToastrService) { }
 
   loadData() {
-    return this.afs.collection('subscribers').snapshotChanges().pipe(map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data();
-        const id = a.payload.doc.id;
-        return { id, data };
-      })
-    }));
+    return this.afs.getDocumentsInCollection(this.collection);
   }
 
   deleteData(id: string) {
-    this.afs.doc(`subscribers/${id}`).delete().then(docRef => {
+    this.afs.deleteDocument(this.collection, id).then(docRef => {
       this.toastr.info("Deleted successfully");
     }).catch(err => {
       this.toastr.error(err);

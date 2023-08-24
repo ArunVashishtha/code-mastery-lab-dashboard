@@ -42,13 +42,32 @@
                 </div>
               </div>
               <div class="form-group">
+                <label>Post label</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="postLabel"
+                  [ngClass]="{
+                    'is-invalid': fc['postLabel'].touched && fc['postLabel'].invalid
+                  }"
+                />
+                <div *ngIf="fc['postLabel'].errors?.['required']">
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="fc['postLabel'].touched && fc['postLabel'].invalid"
+                  >
+                    Post label is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
                 <label>Permalink</label>
                 <input
                   name="permalink"
-                  [(ngModel)]="permalink"
                   type="text"
                   class="form-control"
                   formControlName="permalink"
+                  ngModel="permalink"
                   [attr.disabled]="true"
                   [ngClass]="{
                     'is-invalid':
@@ -98,7 +117,7 @@
         </div>
         <div class="col-md-5">
           <div class="form-group">
-            <label for="">Please select a post category</label>
+            <label for="">Please select a menu category</label>
             <select
               class="form-control"
               formControlName="category"
@@ -120,7 +139,7 @@
                 class="alert alert-danger"
                 *ngIf="fc['category'].touched && fc['category'].invalid"
               >
-                Please select the post category..
+                Please select the menu category.
               </div>
             </div>
           </div>

@@ -32,6 +32,7 @@ export class NewPostComponent implements OnInit {
           this.post = post;
           this.postForm = this.fb.group({
             title: [this.post.title, [Validators.required, Validators.minLength(10)]],
+            postLabel: [this.post.postLabel, [Validators.required]],
             permalink: [this.post.permalink, Validators.required],
             excerpt: [this.post.excerpt, [Validators.required, Validators.minLength(50)]],
             category: [`${this.post.category.categoryId}-${this.post.category.category}`, Validators.required],
@@ -44,6 +45,7 @@ export class NewPostComponent implements OnInit {
       } else {
         this.postForm = this.fb.group({
           title: ['', [Validators.required, Validators.minLength(10)]],
+          postLabel: ['', [Validators.required]],
           permalink: ['', Validators.required],
           excerpt: ['', [Validators.required, Validators.minLength(50)]],
           category: [``, Validators.required],
@@ -78,6 +80,7 @@ export class NewPostComponent implements OnInit {
     let splitted = this.postForm.value.category.split('-');
       const postData: Post = {
         title: this.postForm.value.title,
+        postLabel: this.postForm.value.postLabel,
         permalink: this.postForm.value.permalink,
         category: {
           categoryId: splitted[0],

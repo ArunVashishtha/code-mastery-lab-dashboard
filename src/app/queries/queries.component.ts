@@ -18,7 +18,7 @@ export class QueriesComponent implements OnInit {
   }
 
   onDelete(subscriberId: string) {
-    this.queries.deleteData(subscriberId);
+    this.queriesService.deleteData(subscriberId);
   }
 
 }
