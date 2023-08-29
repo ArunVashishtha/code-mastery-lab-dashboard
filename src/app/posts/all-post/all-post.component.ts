@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -8,13 +9,31 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class AllPostComponent implements OnInit {
   postArray: any;
-  constructor(private postService: PostsService) { }
+  categories: any;
+  selectedCategory = 'all';
+  constructor(private postService: PostsService,
+  private categoryService: CategoriesService) { }
 
   ngOnInit(): void {
-    this.postService.loadData().subscribe((val) => {
-      console.log(val);
-      this.postArray = val;
-    })
+    this.categoryService.loadData().subscribe((val: any) => {
+      this.categories = val;
+      this.postService.loadData().subscribe((val) => {
+        console.log(val);
+        this.postArray = val;
+      });
+    });
+  }
+
+  get filteredPosts(): any {
+    if (this.categories && this.postArray) {
+      if (this.selectedCategory === 'all') {
+        return this.postArray;
+      } else {
+        return this.postArray.filter((post: any) => post.data.category.category.toLowerCase() === this.selectedCategory.toLowerCase());
+      }
+    } else {
+      return this.postArray;
+    }
   }
 
   onDelete(postImgPath: string, id: string) {

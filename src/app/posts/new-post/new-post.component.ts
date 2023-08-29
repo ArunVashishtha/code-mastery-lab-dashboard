@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Post } from 'src/app/models/post';
 import { PostsService } from 'src/app/services/posts.service';
 import { ActivatedRoute } from '@angular/router';
+import Editor from './../../../../ckeditor5-39.0.1-72owmrkdy25w/build/ckeditor';
 
 @Component({
   selector: 'app-new-post',
@@ -14,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 export class NewPostComponent implements OnInit {
   permalink: string = '';
   selectedImage: any;
+  Editor: any = Editor;
   post: any;
   imgSrc: any = './assets/placeholderimage.png';
   categories: any = [];

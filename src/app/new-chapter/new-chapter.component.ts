@@ -18,6 +18,8 @@ export class NewChapterComponent implements OnInit {
   chapterId = '';
   chapter: any;
   formStatus: string = 'Add';
+  selectedImage: any;
+  imgSrc: any = './assets/placeholderimage.png';
   constructor(
     private fb: FormBuilder,
     private chapterService: ChaptersService,
@@ -42,6 +44,7 @@ export class NewChapterComponent implements OnInit {
               ],
               content: [this.chapter.content, Validators.required],
               chapterNumber: [this.chapter.chapterNumber, Validators.required],
+              description: [this.chapter.description, Validators.required],
             });
             this.formStatus = 'Edit';
           });
@@ -50,6 +53,7 @@ export class NewChapterComponent implements OnInit {
           category: ['', Validators.required],
           title: ['', Validators.required],
           chapterNumber: ['', Validators.required],
+          description: ['', Validators.required],
           content: [''], // No validation needed for content
         });
       }
@@ -68,6 +72,7 @@ export class NewChapterComponent implements OnInit {
       const chapterData: Chapter = {
         title: this.chapterForm.value.title,
         chapterNumber: this.chapterForm.value.chapterNumber,
+        description: this.chapterForm.value.description,
         category: {
           id: splitted[0],
           description: splitted[1],
@@ -76,12 +81,22 @@ export class NewChapterComponent implements OnInit {
         isFeatured: false,
         views: 0,
         createdAt: new Date(),
+        image: ''
       };
       if (this.chapterId) {
-        this.chapterService.updateData(this.chapterId, chapterData);
+        this.chapterService.uploadImage(this.selectedImage, chapterData, 'Edit', this.chapterId);
       } else {
-        this.chapterService.saveData(chapterData);
+        this.chapterService.uploadImage(this.selectedImage, chapterData, 'Save', this.chapterId);
       }
     }
+  }
+
+  showPreview($event: any) {
+    const reader = new FileReader();
+    reader.onload = (e:any) => {
+      this.imgSrc = e.target.result;
+    }
+    reader.readAsDataURL($event.target.files[0]);
+    this.selectedImage = $event.target.files[0];
   }
 }

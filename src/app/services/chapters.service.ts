@@ -12,6 +12,7 @@ import { FirestoreService } from './firestore.service';
 export class ChaptersService {
   collection = 'chapters';
   constructor(private afs: FirestoreService, private toaster: ToastrService,
+    private storage: AngularFireStorage,
     private router: Router) { }
     saveData(chapterData:any) {
       this.afs.createDocument(this.collection, chapterData)
@@ -49,4 +50,44 @@ export class ChaptersService {
         this.toaster.success('Feature updated successfully');
       });
     }
+  
+    
+  uploadImage(selectedImage: any, postData: any, formStatus: string, id: string) {
+    if (selectedImage) {
+      this.afs.getCurrentUserUid().then(userId => {
+        if (userId) {
+          // Generate a unique ID for the image
+          const imageId = Math.random().toString(36).substring(2);
+
+          // Construct the path to the image in storage
+          const path = `images/${userId}/${imageId}_${selectedImage.name}`;
+
+          // Upload the image
+          const ref = this.storage.ref(path);
+          const task = ref.put(selectedImage);
+
+          task.snapshotChanges().subscribe(
+            (snapshot: any) => {
+              if (snapshot.state === 'success') {
+                console.log('Image uploaded successfully');
+                ref.getDownloadURL().subscribe(url => {
+                  if (url) {
+                    postData.image = url;
+                    if (formStatus == 'Edit') {
+                      this.updateData(id, postData);
+                    } else {
+                      this.saveData(postData);
+                    }
+                  }
+                });
+              }
+            },
+            (error) => {
+              console.error('Error uploading image:', error);
+            }
+          );
+        }
+      });
+    }
+  }
 }

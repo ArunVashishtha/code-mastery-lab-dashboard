@@ -24,9 +24,26 @@
                         </div>
                         <div class="form-group">
                            <label for="chapterNumber">Chapter Number:</label>
-                           <input type="number" name="chapterNumber" id="chapterNumber" formControlName="chapterNumber">
+                           <input class="form-control" type="number" name="chapterNumber" id="chapterNumber" formControlName="chapterNumber">
                         </div>
-
+                        <div class="form-group">
+                           <label for="description">Meta Description:</label>
+                           <input class="form-control" type="text" name="description" id="description" formControlName="description">
+                        </div>
+                        <div class="form-group">
+                           <label for="">Post Image</label>
+                           <img
+                             [src]="imgSrc"
+                             class="form-control img-fluid img-preview"
+                             alt="post image"/>
+                           <input
+                             type="file"
+                             formControlName="postImg"
+                             class="form-control"
+                             accept="image/*"
+                             (change)="showPreview($event)"
+                           />
+                         </div>
                         <div class="form-group">
                            <label for="content">Chapter Content:</label>
                            <ckeditor [editor]="Editor" formControlName="content"></ckeditor>

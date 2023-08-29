@@ -16,20 +16,32 @@
       <div class="col-md-12">
          <div class="card shadow-effect">
             <div class="card-body">
+               <div class="row" *ngIf="categories">
+                  <label for="">filter post with category</label>
+                  <select class="form-control" [(ngModel)]="selectedCategory">
+                     <option value="all">All</option>
+                     <option *ngFor="let category of categories"
+                     value="{{ category.data.category }}">
+                                    {{ category.data.category }}
+                                 </option>
+                  </select>
+                  </div>
                <table class="table row-border hover">
                   <thead>
                      <tr>
                         <th> Chapter </th>
                         <th> Title </th>
+                        <th> Image </th>
                         <th> Category </th>
                         <th> Date </th>
                         <th> Actions </th>
                      </tr>
                   </thead>
                   <tbody>
-                     <tr *ngFor="let chapter of chapters; let i=index">
+                     <tr *ngFor="let chapter of filteredChapters; let i=index">
                         <td> {{chapter.data.chapterNumber}}</td>
                         <td>{{chapter.data.title}}</td>
+                        <td width="200"><img src="{{chapter.data.image}}" class="img img-fluid"></td>
                         <td>{{chapter.data.category.description}}</td>
                         <td>{{chapter.data.createdAt.toMillis() | date }}</td>
                         <td>

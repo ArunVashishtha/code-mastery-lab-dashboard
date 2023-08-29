@@ -67,7 +67,7 @@
                   type="text"
                   class="form-control"
                   formControlName="permalink"
-                  ngModel="permalink"
+                  [(ngModel)]="permalink"
                   [attr.disabled]="true"
                   [ngClass]="{
                     'is-invalid':
@@ -177,10 +177,7 @@
             <div class="card-body">
               <div class="form-group">
                 <label for=""> Content </label>
-                <angular-editor
-                  formControlName="content"
-                  placeholder="Add your content here"
-                ></angular-editor>
+                <ckeditor [editor]="Editor" formControlName="content"></ckeditor>
                 <div *ngIf="fc['content'].errors?.['required']">
                   <div
                     class="alert alert-danger"
